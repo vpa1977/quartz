@@ -118,7 +118,7 @@ allprojects {
             TaskProvider<WriteProperties> pomPropertiesTask = project.getTasks().register(pomTask.getName().replace("PomFile", "PomProperties"), WriteProperties.class, task -> {
                 task.dependsOn(pomTask);
                 task.setGroup(PUBLISH_TASK_GROUP);
-                task.setOutputFile(new File(pomTask.getDestination().getParentFile(), "pom.properties"));
+                task.getDestinationFile().set(new File(pomTask.getDestination().getParentFile(), "pom.properties"));
                 task.property("groupId", coordinates.getGroupId());
                 task.property("artifactId", coordinates.getArtifactId());
                 task.property("version", coordinates.getVersion());
